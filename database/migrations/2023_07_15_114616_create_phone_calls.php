@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->timestamp('talk_started_at')->nullable()->comment('通話開始日時');
             $table->timestamp('finished_at')->nullable()->comment('通話終了日時');
             $table->integer('call_charge')->nullable()->comment('通話料金');
+            $table->timestamps();
         });
     }
 

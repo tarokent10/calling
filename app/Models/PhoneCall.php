@@ -24,8 +24,6 @@ class PhoneCall extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
     protected $casts = [
         'status' => PhoneCallStatus::class,
         'called_at' => 'immutable_datetime',
