@@ -66,5 +66,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(PhoneCall::class, 'receiver_user_id');
     }
-
 }

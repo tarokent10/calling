@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property ?int $call_charge
  * @property User $caller
  * @property User $receiver
- *
  */
 class PhoneCall extends Model
 {
