@@ -36,4 +36,20 @@ class PhoneCallController extends Controller
             ],
         ], Response::HTTP_CREATED);
     }
+
+    public function cancel(int $id): JsonResponse
+    {
+        DB::transaction(function () use ($id) {
+            $phoneCall = PhoneCall::query()->findOrFail($id);
+            $phoneCall->fill(
+                [
+                    'status' => PhoneCallStatus::Canceled,
+                    'finished_at' => CarbonImmutable::now(),
+                ]
+            );
+            $phoneCall->save();
+        });
+
+        return response()->json([], Response::HTTP_NO_CONTENT);
+    }
 }

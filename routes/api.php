@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/phone_calls', [PhoneCallController::class, 'store']);
+Route::post('/phone_calls/{id}/cancel', [PhoneCallController::class, 'cancel'])->where(['id' => '[0-9]+']);
