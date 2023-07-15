@@ -18,7 +18,7 @@ class PhoneCallController extends Controller
         /** @var User $receiver */
         $receiver = User::query()->findOrFail($request->user_id);
         /** @var User $me */
-        $me = User::query()->where('name', '=', 'Me')->firstOrFail();
+        $me = auth()->user();
 
         /** @var PhoneCall $phoneCall */
         $phoneCall = DB::transaction(function () use ($receiver, $me) {

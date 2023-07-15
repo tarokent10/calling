@@ -4,6 +4,7 @@ namespace Tests\Feature\Controllers;
 
 use App\Enums\PhoneCallStatus;
 use App\Models\PhoneCall;
+use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -18,11 +19,15 @@ class PhoneCallControllerTest extends TestCase
         $now = CarbonImmutable::now();
         CarbonImmutable::setTestNow($now);
 
-        $userId = 1;
+        /** @var User $me */
+        $me = User::factory()->create();
+        $this->actingAs($me);
+        /** @var User $receiver */
+        $receiver = User::factory()->create();
 
         // when
         $response = $this->post('/api/phone_calls', [
-            'user_id' => $userId,
+            'user_id' => $receiver->id,
         ]);
 
         // then
@@ -36,8 +41,8 @@ class PhoneCallControllerTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('phone_calls', [
-            'caller_user_id' => 4,
-            'receiver_user_id' => $userId,
+            'caller_user_id' => $me->id,
+            'receiver_user_id' => $receiver->id,
             'status' => PhoneCallStatus::WaitingReceiver,
             'called_at' => now(),
         ]);
