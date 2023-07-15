@@ -18,7 +18,7 @@ class PhoneCallStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'integer']
+            'user_id' => ['required', 'integer'],
         ];
     }
 }
