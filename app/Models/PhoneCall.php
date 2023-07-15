@@ -46,7 +46,7 @@ class PhoneCall extends Model
     ];
 
     /**
-     * @return BelongsTo BelongsTo<User, PhoneCall>
+     * @return BelongsTo<User, PhoneCall>
      */
     public function caller(): BelongsTo
     {
@@ -54,7 +54,7 @@ class PhoneCall extends Model
     }
 
     /**
-     * @return BelongsTo BelongsTo<User, PhoneCall>
+     * @return BelongsTo<User, PhoneCall>
      */
     public function receiver(): BelongsTo
     {
